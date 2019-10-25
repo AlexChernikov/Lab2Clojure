@@ -62,4 +62,4 @@
   (cons (first arr) (worker (rest arr) n 1 (first arr)))
   )
 
-(println (removo [1 2 2 2 1 1  1 1 1 1 1 2 2 2 3 3 3] 2))
+(println (take 10 (removo (repeat 1) 11)))
