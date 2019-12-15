@@ -10,7 +10,7 @@
      c))
 
 (defn sort-by-mod [c n]
-  (let [vec-vec [(a/chan 10)
+  (let [vec [(a/chan 10)
                  (a/chan 10)
                  (a/chan 10)
                  (a/chan 10)
@@ -24,11 +24,11 @@
     (when-some [value (<! c)]
       (println "value " value)
       (println "mod = " (mod value n))
-      (>! (vec-vec (mod value n)) value)
+      (>! (vec (mod value n)) value)
       (recur)
       )
     )
-  vec-vec)
+  vec)
 )
 
 (defn consumer [c]
@@ -39,11 +39,11 @@
                (print value " ")
                (recur))
              )
-  ;(Thread/sleep 1000)
+  (Thread/sleep 1000)
   )
 
 (def c (produser (range 0 20)))
-(def VECVEC (sort-by-mod c 2))
+(def v (sort-by-mod c 2))
 
-(consumer (VECVEC 0))
-(consumer (VECVEC 1))
+(consumer (v 0))
+(consumer (v 1))
