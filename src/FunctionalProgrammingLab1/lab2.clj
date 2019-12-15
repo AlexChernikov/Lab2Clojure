@@ -33,7 +33,7 @@
 
 (defn consumer [c]
   (Thread/sleep 1000)
-  (println c)
+  (println)
   (a/go-loop []
              (when-some [value (<! c)]
                (print value " ")
